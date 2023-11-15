@@ -23,5 +23,5 @@ if st.button("Submit") and text is not None and image is not None:
     outputs = model(**encoding)
     logits = outputs.logits
     idx = logits.argmax(-1).item()
-    st.title("Predicted answer:", model.config.id2label[idx])
+    st.title(f"Predicted answer: { model.config.id2label[idx]}")
     

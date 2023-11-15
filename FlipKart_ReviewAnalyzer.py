@@ -12,23 +12,22 @@ def Classifier(Sentence):
     )
     return result['labels'][0]
 
+def Sentiment_Analyzer(Sentence):
+    classifier = pipeline("sentiment-analysis")
+    result=classifier(Sentence)
+    return result
+
 st.title("FlipKart Review Analyzer")
 
 #upload csv
-uploaded_file = st.file_uploader("Choose a file")
 
+review=st.text_input("Enter your review")
 
-
-#save csv
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    data=df["Review"].to_list()
-
-    Data=list(map(lambda x:Classifier(x),data))
-
-    df["Category"]=Data
-
-    st.dataframe(df)
+if st.button("Analyze"):
+    if review is not None:
+        classifi=Classifier(review)
+        sentiment=Sentiment_Analyzer(review)
+        st.write(classifi,sentiment)
 
 
 

@@ -1,6 +1,4 @@
 import streamlit as st
-import torch
-#Image Generator Application
 import io
 from PIL import Image
 import requests
